@@ -1,14 +1,11 @@
 package com.tangenta.gkassist.school;
 
 import com.tangenta.gkassist.school.model.SchoolId;
-import com.tangenta.gkassist.school.representation.SchoolIdNameRepresentation;
+import com.tangenta.gkassist.school.representation.SchoolBriefRepresentation;
 import com.tangenta.gkassist.school.representation.SchoolRepresentation;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,7 +28,14 @@ public class SchoolController {
 
     @ApiOperation(value = "返回所有学校及其代码", response = List.class)
     @GetMapping("/all")
-    public List<SchoolIdNameRepresentation> allSchools() {
+    public SchoolBriefRepresentation allSchools() {
         return service.allSchools();
+    }
+
+    @GetMapping("/search")
+    public SchoolBriefRepresentation searchSchool(
+            @ApiParam(value = "查找的字符串，学校代码或名称")
+            @RequestParam(name = "query") String query) {
+        return service.searching(query);
     }
 }

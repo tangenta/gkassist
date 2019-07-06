@@ -1,5 +1,7 @@
 package com.tangenta.gkassist;
 
+import com.tangenta.gkassist.major.model.Majorinfo;
+import com.tangenta.gkassist.major.repository.MajorInfoRepository;
 import com.tangenta.gkassist.school.model.*;
 import com.tangenta.gkassist.school.repository.AdmissionGuideRepository;
 import com.tangenta.gkassist.school.repository.CampusSceneryRepository;
@@ -36,7 +38,8 @@ public class Application {
     public CommandLineRunner demo(AdmissionGuideRepository admRepo,
                                   CampusSceneryRepository sceneryRepo,
                                   SchoolBadgeRepository badgeRepo,
-                                  SchoolInfoRepository infoRepo) {
+                                  SchoolInfoRepository infoRepo,
+                                  MajorInfoRepository majorinfoRepo) {
         return args -> {
             infoRepo.save(new SchoolInfo("1234", "华南师范大学", "广东省", "广州市", "中国", "中山大道55号", "直属", true, false, true, true, true, true, true, "学校类型", "学院类型", Collections.emptyList()));
             infoRepo.save(new SchoolInfo("4321", "华南理工大学", "广东省", "广州市", "中国", "中山大道55号", "直属", true, true, true, true, true, true, true, "学校类型", "学院类型", Collections.emptyList()));
@@ -53,6 +56,9 @@ public class Application {
 
             badgeRepo.save(new SchoolBadge("1234", "badge link1"));
             badgeRepo.save(new SchoolBadge("4321", "badge link2"));
+
+            majorinfoRepo.save(new Majorinfo("123","1234","true","计算机","1001"));
+            majorinfoRepo.save(new Majorinfo("1235","1234","true","计算机","1001"));
         };
     }
 }

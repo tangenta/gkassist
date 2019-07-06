@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class SchoolRepresentationService {
 
-    public static SchoolRepresentation toRepresentation(SchoolInfo info, List<CampusScenery> scenery, List<AdmissionGuide> guides, Link schoolBadge) {
+    public static SchoolRepresentation toRepresentation(SchoolInfo info, List<CampusScenery> scenery, List<AdmissionGuide> guides, Link schoolBadge, List<String> campus, List<String> campusLocations, String belongTo, String typeOfSchool, String institutionType, List<String> specialMajors) {
         List<SceneryRepresentation> sceneryReps = scenery.stream()
                 .map(s -> new SceneryRepresentation(Link.of(s.getUrl()), s.getDescription()))
                 .collect(Collectors.toList());
@@ -15,7 +15,8 @@ public class SchoolRepresentationService {
                 .map(s -> new AdmissionGuideRepresentation(Link.of(s.getLocation()), s.getDescription()))
                 .collect(Collectors.toList());
 
+        BasicInfoRepresentation basicInfo = new BasicInfoRepresentation(campus, campusLocations, belongTo, typeOfSchool, institutionType, specialMajors);
         return new SchoolRepresentation(SchoolId.of(info.getSchoolId()),
-                info.getName(), sceneryReps, guideReps, schoolBadge);
+                info.getName(), sceneryReps, guideReps, schoolBadge, basicInfo);
     }
 }

@@ -26,12 +26,17 @@ public class SchoolController {
         return service.homepage(SchoolId.of(schoolId));
     }
 
-    @ApiOperation(value = "返回所有学校及其代码", response = List.class)
+    @ApiOperation(value = "返回所有学校及其代码")
     @GetMapping("/all")
-    public SchoolBriefRepresentation allSchools() {
-        return service.allSchools();
+    public SchoolBriefRepresentation allSchools(
+            @ApiParam(name = "page", value = "zero-based page index")
+            @RequestParam(value = "page", required = false) int page,
+            @ApiParam(name = "pageSize", value = "the size of the page to be returned")
+            @RequestParam(value = "pageSize", required = false) int size) {
+        return service.allSchools(page, size);
     }
 
+    @ApiOperation(value = "搜索学校代码或名称")
     @GetMapping("/search")
     public SchoolBriefRepresentation searchSchool(
             @ApiParam(value = "查找的字符串，学校代码或名称")

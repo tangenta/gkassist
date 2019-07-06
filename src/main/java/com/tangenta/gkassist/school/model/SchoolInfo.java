@@ -30,7 +30,7 @@ public class SchoolInfo {
     @Convert(converter = ListGsonConverter.class)
     private List<String> specialMajors;
 
-    protected SchoolInfo() { }
+    protected SchoolInfo() {}
 
     public SchoolInfo(String schoolId, String name, String province, String city, String county, String address, String belong, Boolean is211, Boolean is985, Boolean isDcs, Boolean isDck, Boolean isDepartment, Boolean isCentral, Boolean hasAdmission, String schoolType, String type, List<String> specialMajors) {
         this.schoolId = schoolId;

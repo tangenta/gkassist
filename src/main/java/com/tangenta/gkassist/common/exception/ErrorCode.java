@@ -11,6 +11,7 @@ public enum ErrorCode {
     SCHOOLID_NONEXIST_ERROR(NOT_FOUND, "找不到学校"),
     REQUEST_VALIDATION_FAILED(BAD_REQUEST, "请求数据格式验证失败");
 
+
     private HttpStatus status;
     private String message;
 
